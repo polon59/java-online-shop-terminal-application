@@ -1,4 +1,4 @@
-package frompythontojava.onlineshop.part1;
+// package frompythontojava.onlineshop.part1;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -24,7 +24,7 @@ public class Basket{
         this.productList.add(product);
     }
 
-    public boolean removeProduct(Product product){
+    public void removeProduct(Product product){
         this.productList.remove(product);
     }
 }

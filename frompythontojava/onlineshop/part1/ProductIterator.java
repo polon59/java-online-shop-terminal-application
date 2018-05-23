@@ -1,14 +1,14 @@
-package frompythontojava.onlineshop.part1;
+// package frompythontojava.onlineshop.part1;
 
-import java.util.Iterator;
+// import java.util.Iterator;
 
-public class ProductIterator implements Iterator{
+// public class ProductIterator implements Iterator{
     
-    public boolean hasNext(){
+//     public boolean hasNext(){
 
-    }
+//     }
 
-    public Product next(){
-        
-    }
-}
+//     public Product next(){
+
+//     }
+// }

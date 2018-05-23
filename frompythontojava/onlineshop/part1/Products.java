@@ -1,4 +1,4 @@
-package frompythontojava.onlineshop.part1;
+//package frompythontojava.onlineshop.part1;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class Products{
         return this.productList;
     }
 
-    public List<Product> getProductsByCategory(ProductCategory productCategory){
-        
-    }
+    // public List<Product> getProductsByCategory(ProductCategory productCategory){
+
+    // }
 }

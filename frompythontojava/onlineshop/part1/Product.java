@@ -1,16 +1,13 @@
-package frompythontojava.onlineshop.part1;
+// package frompythontojava.onlineshop.part1;
+import java.lang.StringBuilder;
 
 public class Product{
     private String name;
-    private float defaultPrice;
+    private double defaultPrice;
     private ProductCategory productCategory;
     private int ID;
 
-    public Product(){
-
-    }
-
-    public Product(String name, float defaultPrice, ProductCategory productCategory){
+    public Product(String name, double defaultPrice, ProductCategory productCategory){
         this.name = name;
         this.defaultPrice = defaultPrice;
         this.productCategory = productCategory;
@@ -21,6 +18,13 @@ public class Product{
     }
 
     public String toString(){
+        StringBuilder productSpecification = new StringBuilder();
+        productSpecification.append(this.name);
+        productSpecification.append(" - ");
+        productSpecification.append(this.defaultPrice);
+        productSpecification.append(" - ");
+        productSpecification.append(this.productCategory.getName());
         
+        return productSpecification.toString();
     }
 }
