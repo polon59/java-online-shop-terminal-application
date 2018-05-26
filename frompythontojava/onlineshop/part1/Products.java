@@ -1,4 +1,4 @@
-//package frompythontojava.onlineshop.part1;
+package frompythontojava.onlineshop.part1;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +21,24 @@ public class Products{
         return this.productList;
     }
 
-    // public List<Product> getProductsByCategory(ProductCategory productCategory){
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
 
-    // }
+        for(Product product : this.productList){
+            sb.append(product.toString());
+        }
+
+        return sb.toString();
+    }
+
+    public ArrayList<Product> getAllProductsBy(ProductCategory productCategory){
+        ArrayList<Product> sameCategoryProducts = new ArrayList<>();
+
+        for(Product product : this.productList){
+            if(product.getProductCategory().equals(productCategory)){
+                sameCategoryProducts.add(product);
+            }
+        }
+
+        return sameCategoryProducts;
 }

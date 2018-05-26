@@ -1,8 +1,9 @@
-// package frompythontojava.onlineshop.part1;
+package frompythontojava.onlineshop.part1;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.lang.*;
 
 public class Basket{
     private List<Product> productList;
@@ -26,5 +27,15 @@ public class Basket{
 
     public void removeProduct(Product product){
         this.productList.remove(product);
+    }
+
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+
+        for(Product product : this.productList){
+            sb.append(product.toString());
+        }
+
+        return sb.toString();
     }
 }

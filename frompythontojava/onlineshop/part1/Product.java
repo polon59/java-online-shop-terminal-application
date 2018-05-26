@@ -1,4 +1,4 @@
-// package frompythontojava.onlineshop.part1;
+package frompythontojava.onlineshop.part1;
 import java.lang.StringBuilder;
 
 public class Product{
@@ -24,7 +24,7 @@ public class Product{
         productSpecification.append(this.defaultPrice);
         productSpecification.append(" - ");
         productSpecification.append(this.productCategory.getName());
-        
+        productSpecification.append("\n");
         return productSpecification.toString();
     }
 }

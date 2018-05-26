@@ -1,4 +1,4 @@
-// package frompythontojava.onlineshop.part1;
+package frompythontojava.onlineshop.part1;
 
 import java.time.LocalDate;
 
@@ -8,7 +8,7 @@ public class ProductCategory{
     ProductCategoryStatus status;
 
     public ProductCategory(){
-
+        this.name = "noName";
     }
 
     public ProductCategory(String name){
