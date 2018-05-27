@@ -5,17 +5,24 @@ import java.util.*;
 
 public class Application {
 
-    private static Products products = new Products();
-    private static Basket basket = new Basket();
-    private static List<ProductCategory> categories = new ArrayList<>();
-    private static Scanner in = new Scanner(System.in);
+    private  Products products;
+    private  Basket basket;
+    private  List<ProductCategory> categories;
+    private  Scanner input;
     
-    public static void main(String[] args) {
+    public Application(){
+        products = new Products();
+        basket = new Basket();
+        categories = new ArrayList<>();
+        input = new Scanner(System.in);
+    }
+
+    public void LaunchMainMenu() {
         int userOption = Integer.MAX_VALUE;
         while(userOption != 0){
-            System.out.println("1-create product , 2-add to basket, 3 - print basket, 4 - remove from basket, ");
+            System.out.println("1-create product , 2-add to basket, 3 - print basket, 4 - display all products,\n 5 - remove from basket, 6 - display products by category ");
             
-            userOption = in.nextInt(); in.nextLine();
+            userOption = input.nextInt(); input.nextLine();
 
             switch (userOption) {
                 case 1:
@@ -37,9 +44,6 @@ public class Application {
                 case 6:
                     displayProductsByCategory();
                     break;
-                case 7:
-                    System.out.println("all of them all avalible");
-                    break;
                 case 8:
                     Order order = new Order(); 
                     PaymentProcess process = new PaymentProcess();
@@ -49,16 +53,19 @@ public class Application {
         }
     }
 
-    public static void displayProductsByCategory(){
+    public void displayProductsByCategory(){
         displayAllCategories();
         System.out.println("Choose category from list.");
-        int choice = in.nextInt(); in.nextLine();
+        int choice = input.nextInt(); input.nextLine();
         ProductCategory choosenCategory = categories.get(choice - 1);
-        products.getAllProductsBy(choosenCategory);
-        
+        ArrayList<Product> productsByCategory= products.getAllProductsBy(choosenCategory);
+        for (Product product : productsByCategory){
+            System.out.println(product.toString());
+        }
+
     }
 
-    public static void displayAllCategories(){
+    public void displayAllCategories(){
         StringBuilder categoriesNames = new StringBuilder();
 
         for (int i = 0; i < categories.size(); i++){
@@ -70,28 +77,28 @@ public class Application {
         System.out.println(categoriesNames.toString());
     }
 
-    public static void addProductToBasket(){
+    public void addProductToBasket(){
         displayAvailableProducts();
         System.out.println("which product You want to add?");
-        int productIndex = in.nextInt(); in.nextLine();
+        int productIndex = input.nextInt(); input.nextLine();
         Product productToBuy = products.getProductList().get(productIndex - 1);
         basket.addProduct(productToBuy);
     }
 
-    public static void removeProductFromBasket(){
+    public void removeProductFromBasket(){
         displayProductsInBasket();
         System.out.println("which product You want to remove?");
-        int productIndex = in.nextInt(); in.nextLine();
+        int productIndex = input.nextInt(); input.nextLine();
         Product productToRemove = basket.getProducts().get(productIndex - 1);
         basket.removeProduct(productToRemove);        
     }
 
-    public static void createNewProduct(){
+    public void createNewProduct(){
         System.out.println("name: ");
-        String name = in.nextLine();
+        String name = input.nextLine();
 
         System.out.println("price: ");
-        double price = in.nextDouble(); in.nextLine();
+        double price = input.nextDouble(); input.nextLine();
 
         ProductCategory productCategory = createCategory();
 
@@ -100,19 +107,19 @@ public class Application {
     }
 
 
-    public static ProductCategory createCategory() {
+    public ProductCategory createCategory() {
         System.out.println("1. Normal\n2.Featured");
-        int option = in.nextInt(); in.nextLine();
+        int option = input.nextInt(); input.nextLine();
         if(option == 1){ 
             System.out.println("Category name: ");
-            String name = in.nextLine();
+            String name = input.nextLine();
             ProductCategory normalCategory = new ProductCategory(name);
             categories.add(normalCategory);
             return normalCategory;
         }
         else{
             System.out.println("Category name: ");
-            String name = in.nextLine();
+            String name = input.nextLine();
             Date expirationDate = createExpirationDate();
             ProductCategory featuredCategory = new FeaturedProductCategory(name, expirationDate);
             categories.add(featuredCategory);
@@ -122,30 +129,22 @@ public class Application {
         }
     
 
-    public static Date createExpirationDate(){
+    public Date createExpirationDate(){
         System.out.println("YEAR:");
-        int year = in.nextInt(); in.nextLine();
+        int year = input.nextInt(); input.nextLine();
         System.out.println("MONTH:");
-        int month = in.nextInt(); in.nextLine();
+        int month = input.nextInt(); input.nextLine();
         System.out.println("DAY");
-        int day = in.nextInt(); in.nextLine();
+        int day = input.nextInt(); input.nextLine();
         Date expirationDate = new Date(year, month, date);
         return expirationDate;
     }
 
-    public static void displayAvailableProducts(){
+    public void displayAvailableProducts(){
         System.out.println(products.toString());
     }
 
-    public static void displayProductsInBasket(){
+    public void displayProductsInBasket(){
         System.out.println(basket.toString());
-    }
-
-    public static ProductCategory choseProductCategory() {
-        
-    }
-
-    public static void productsChose(){
-
     }
 }
