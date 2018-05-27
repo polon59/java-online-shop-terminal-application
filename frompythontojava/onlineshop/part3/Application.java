@@ -23,21 +23,19 @@ public class Application {
                     break;
             
                 case 2:
-                    basket.add(productsChose(0));
+                    addProductToBasket();
                     break;
                 case 3:
-                    System.out.println(basket.toString());
+                    displayProductsInBasket();
                     break;
                 case 4:
-                    basket.removeProduct(productsChose(1));
+                    displayAvailableProducts();
                     break;
                 case 5:
-                    productsChose(3);
+                    removeProductFromBasket();
                     break;
                 case 6:
-                    for(Product product : products.getAllProductsBy(choseProductCategory())){
-                        System.out.println(product.toString());
-                    }
+                    displayProductsByCategory();
                     break;
                 case 7:
                     System.out.println("all of them all avalible");
@@ -51,8 +49,41 @@ public class Application {
         }
     }
 
-    public static void addProductToBasket(){
+    public static void displayProductsByCategory(){
+        displayAllCategories();
+        System.out.println("Choose category from list.");
+        int choice = in.nextInt(); in.nextLine();
+        ProductCategory choosenCategory = categories.get(choice - 1);
+        products.getAllProductsBy(choosenCategory);
         
+    }
+
+    public static void displayAllCategories(){
+        StringBuilder categoriesNames = new StringBuilder();
+
+        for (int i = 0; i < categories.size(); i++){
+            categoriesNames.append(i);
+            categoriesNames.append(". ");
+            categoriesNames.append(categories.get(i).getName());
+            categoriesNames.append("\n");
+        }
+        System.out.println(categoriesNames.toString());
+    }
+
+    public static void addProductToBasket(){
+        displayAvailableProducts();
+        System.out.println("which product You want to add?");
+        int productIndex = in.nextInt(); in.nextLine();
+        Product productToBuy = products.getProductList().get(productIndex - 1);
+        basket.addProduct(productToBuy);
+    }
+
+    public static void removeProductFromBasket(){
+        displayProductsInBasket();
+        System.out.println("which product You want to remove?");
+        int productIndex = in.nextInt(); in.nextLine();
+        Product productToRemove = basket.getProducts().get(productIndex - 1);
+        basket.removeProduct(productToRemove);        
     }
 
     public static void createNewProduct(){
@@ -76,6 +107,7 @@ public class Application {
             System.out.println("Category name: ");
             String name = in.nextLine();
             ProductCategory normalCategory = new ProductCategory(name);
+            categories.add(normalCategory);
             return normalCategory;
         }
         else{
@@ -83,6 +115,7 @@ public class Application {
             String name = in.nextLine();
             Date expirationDate = createExpirationDate();
             ProductCategory featuredCategory = new FeaturedProductCategory(name, expirationDate);
+            categories.add(featuredCategory);
             return featuredCategory;
 
         }
