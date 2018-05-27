@@ -13,12 +13,13 @@ public class Application {
     public static void main(String[] args) {
         int userOption = Integer.MAX_VALUE;
         while(userOption != 0){
+            System.out.println("1-create product , 2-add to basket, 3 - print basket, 4 - remove from basket, ");
             
             userOption = in.nextInt(); in.nextLine();
 
             switch (userOption) {
                 case 1:
-                    products.add(createProduct());
+                    createNewProduct();
                     break;
             
                 case 2:
@@ -50,15 +51,19 @@ public class Application {
         }
     }
 
-    public static Product createProduct() {
+    public static void createNewProduct(){
         System.out.println("name: ");
         String name = in.nextLine();
 
         System.out.println("price: ");
         double price = in.nextDouble(); in.nextLine();
 
-        return new Product(name, price, createCategory());
+        ProductCategory productCategory = createCategory();
+
+        Product createdProduct = new Product(name, price, createCategory());
+        products.add(createProduct());
     }
+
 
     public static ProductCategory createCategory() {
         System.out.println("1. Normal\n2.Featured");
@@ -66,15 +71,40 @@ public class Application {
         if(option == 1){ 
             System.out.println("Category name: ");
             String name = in.nextLine();
-            return new ProductCategory(name)
+            ProductCategory normalCategory = new ProductCategory(name);
+            return normalCategory;
         }
+        else{
+            System.out.println("Category name: ");
+            String name = in.nextLine();
+            Date expirationDate = createExpirationDate();
+            ProductCategory featuredCategory = new FeaturedProductCategory(name, expirationDate);
+            return featuredCategory;
+
+        }
+        }
+    
+
+    public static Date createExpirationDate(){
+        System.out.println("YEAR:");
+        int year = in.nextInt(); in.nextLine();
+        System.out.println("MONTH:");
+        int month = in.nextInt(); in.nextLine();
+        System.out.println("DAY");
+        int day = in.nextInt(); in.nextLine();
+        Date expirationDate = new Date(year, month, date);
+        return expirationDate;
     }
 
-    public static Product productsChose(int option){
+    public static void displayAvailableProducts(){
         System.out.println(products.toString());
     }
 
     public static ProductCategory choseProductCategory() {
         
+    }
+
+    public static void productsChose(){
+
     }
 }
