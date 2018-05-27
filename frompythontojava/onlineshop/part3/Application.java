@@ -21,6 +21,7 @@ public class Application {
     public void LaunchMainMenu() {
         int userOption = Integer.MAX_VALUE;
         while(userOption != 0){
+
             System.out.println("1-create product , 2-add to basket, 3 - print basket, 4 - display all products,\n 5 - remove from basket, 6 - display products by category, 7 - pay, 0 - exit");
             
             userOption = input.nextInt(); input.nextLine();
