@@ -23,9 +23,14 @@ public class Products{
 
     public String toString(){
         StringBuilder sb = new StringBuilder();
+        int counter = 1;
 
         for(Product product : this.productList){
+            sb.append(counter);
+            sb.append(". ");
             sb.append(product.toString());
+            sb.append("\n");
+            counter ++;
         }
 
         return sb.toString();
@@ -41,4 +46,5 @@ public class Products{
         }
 
         return sameCategoryProducts;
+    }
 }

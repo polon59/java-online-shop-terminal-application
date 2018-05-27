@@ -1,3 +1,4 @@
+package frompythontojava.onlineshop.part3;
 import frompythontojava.onlineshop.part3.Application;
 
 public class Main {

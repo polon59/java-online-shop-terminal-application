@@ -1,0 +1,16 @@
+onlineshop/part2/AbstractProcess.java
+onlineshop/part2/Order.java
+onlineshop/part2/Main.java
+onlineshop/part2/PaymentProcess.java
+onlineshop/part2/Orderable.java
+onlineshop/part2/CheckoutProcess.java
+onlineshop/part3/Main.java
+onlineshop/part3/Application.java
+onlineshop/part1/Products.java
+onlineshop/part1/ProductIterator.java
+onlineshop/part1/ProductCategory.java
+onlineshop/part1/Basket.java
+onlineshop/part1/FeaturedProductCategory.java
+onlineshop/part1/ProductCategoryStatus.java
+onlineshop/part1/IDGenerator.java
+onlineshop/part1/Product.java

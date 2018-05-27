@@ -3,6 +3,7 @@ import frompythontojava.onlineshop.part1.*;
 import frompythontojava.onlineshop.part2.*;
 import java.util.*;
 
+
 public class Application {
 
     private  Products products;
@@ -20,7 +21,7 @@ public class Application {
     public void LaunchMainMenu() {
         int userOption = Integer.MAX_VALUE;
         while(userOption != 0){
-            System.out.println("1-create product , 2-add to basket, 3 - print basket, 4 - display all products,\n 5 - remove from basket, 6 - display products by category ");
+            System.out.println("1-create product , 2-add to basket, 3 - print basket, 4 - display all products,\n 5 - remove from basket, 6 - display products by category, 7 - pay, 0 - exit");
             
             userOption = input.nextInt(); input.nextLine();
 
@@ -44,7 +45,7 @@ public class Application {
                 case 6:
                     displayProductsByCategory();
                     break;
-                case 8:
+                case 7:
                     Order order = new Order(); 
                     PaymentProcess process = new PaymentProcess();
                     process.process(order);
@@ -100,14 +101,38 @@ public class Application {
         System.out.println("price: ");
         double price = input.nextDouble(); input.nextLine();
 
-        ProductCategory productCategory = createCategory();
+        ProductCategory productCategory = defineCategory();
 
-        Product createdProduct = new Product(name, price, createCategory());
-        products.add(createProduct());
+        Product createdProduct = new Product(name, price, productCategory);
+        products.addProduct(createdProduct);
     }
 
 
-    public ProductCategory createCategory() {
+    public ProductCategory defineCategory() {
+        System.out.println("1 - choose from existing categories, 2 - create new category");
+        int option = input.nextInt(); input.nextLine();
+        ProductCategory definedCategory;
+        if (option == 1){
+            definedCategory = chooseFromExistingCategories();
+        }
+        else{
+            definedCategory = createNewCategory();
+        }
+        return definedCategory;
+
+
+    }
+
+    private ProductCategory chooseFromExistingCategories(){
+        ProductCategory choosenCategory;
+        displayAllCategories();
+        System.out.println("choose category from list");
+        int index = input.nextInt(); input.nextLine();
+        choosenCategory = categories.get(index - 1);
+        return choosenCategory;
+    }
+
+    public ProductCategory createNewCategory(){
         System.out.println("1. Normal\n2.Featured");
         int option = input.nextInt(); input.nextLine();
         if(option == 1){ 
@@ -126,7 +151,9 @@ public class Application {
             return featuredCategory;
 
         }
-        }
+    }
+
+        
     
 
     public Date createExpirationDate(){
@@ -136,7 +163,7 @@ public class Application {
         int month = input.nextInt(); input.nextLine();
         System.out.println("DAY");
         int day = input.nextInt(); input.nextLine();
-        Date expirationDate = new Date(year, month, date);
+        Date expirationDate = new Date(year - 1900, month -1, day);
         return expirationDate;
     }
 

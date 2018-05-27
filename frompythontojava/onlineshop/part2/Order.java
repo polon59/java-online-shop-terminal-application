@@ -15,9 +15,11 @@ public class Order implements Orderable {
     
     public boolean checkout(){
         this.status = "checked";
+        return true;
     }
 
     public boolean pay(){
         this.status = "payed";
+        return true;
     }
 }

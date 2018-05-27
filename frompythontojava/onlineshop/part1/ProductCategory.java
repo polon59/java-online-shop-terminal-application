@@ -20,11 +20,11 @@ public class ProductCategory{
     }
 
     public void setPromoted(LocalDate expirationDate){
-
+        status.SetPromoted(expirationDate);
     }
 
     public void setNonPromoted(){
-
+        status.setNonPromoted();
     }
 
     public ProductCategoryStatus getStatus(){
