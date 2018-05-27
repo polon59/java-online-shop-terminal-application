@@ -51,6 +51,10 @@ public class Application {
         }
     }
 
+    public static void addProductToBasket(){
+        
+    }
+
     public static void createNewProduct(){
         System.out.println("name: ");
         String name = in.nextLine();
@@ -98,6 +102,10 @@ public class Application {
 
     public static void displayAvailableProducts(){
         System.out.println(products.toString());
+    }
+
+    public static void displayProductsInBasket(){
+        System.out.println(basket.toString());
     }
 
     public static ProductCategory choseProductCategory() {
